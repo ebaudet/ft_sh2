@@ -13,13 +13,6 @@
 #include <stdlib.h>
 #include "ft_sh2.h"
 
-
-char	**eb_get_path(char **env);
-char	*eb_getenv(char **env, char *name);
-int		eb_sizeenv(char **env);
-char	**eb_envcpy(char **env);
-int		eb_envfree(char **env);
-
 char	**eb_get_path(char **env)
 {
 	char	**path;
