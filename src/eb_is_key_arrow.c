@@ -1,31 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_error.c                                      :+:      :+:    :+:   */
+/*   eb_is_key_arrow.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ebaudet <ebaudet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2013/12/30 15:03:14 by ebaudet           #+#    #+#             */
-/*   Updated: 2014/01/27 19:30:06 by ebaudet          ###   ########.fr       */
+/*   Created: 2014/02/05 02:51:39 by ebaudet           #+#    #+#             */
+/*   Updated: 2014/02/05 02:51:39 by ebaudet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-#include <unistd.h>
 #include "ft_sh2.h"
 
-void	p_err(char *s1, char *s2, int error)
+int		is_arrow(char *buf)
 {
-	ft_putstr(s1);
-	ft_putstr(s2);
-	ft_putstr("\n");
-	if (error != NO_ERR)
-		exit(error);
-}
-
-void	ft_error(char *msg)
-{
-	write(isatty(FD_STD_ERR), msg, ft_strlen(msg));
-	write(isatty(FD_STD_ERR), "\n", 1);
-	exit(-1);
+	if (buf[0] == 27 && buf[1] == 91)
+	{
+		if (buf[2] == 65)
+			return (UP);
+		else if (buf[2] == 66)
+			return (DOWN);
+		else if (buf[2] == 68)
+			return (LEFT);
+		else if (buf[2] == 67)
+			return (RIGHT);
+	}
+	return (NOT_ARROW);
 }

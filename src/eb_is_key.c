@@ -1,31 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_error.c                                      :+:      :+:    :+:   */
+/*   eb_is_key.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ebaudet <ebaudet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2013/12/30 15:03:14 by ebaudet           #+#    #+#             */
-/*   Updated: 2014/01/27 19:30:06 by ebaudet          ###   ########.fr       */
+/*   Created: 2014/02/05 02:51:10 by ebaudet           #+#    #+#             */
+/*   Updated: 2014/02/05 02:51:10 by ebaudet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-#include <unistd.h>
 #include "ft_sh2.h"
 
-void	p_err(char *s1, char *s2, int error)
+int		is_space(char *buf)
 {
-	ft_putstr(s1);
-	ft_putstr(s2);
-	ft_putstr("\n");
-	if (error != NO_ERR)
-		exit(error);
+	return (buf[0] == 32);
 }
 
-void	ft_error(char *msg)
+int		is_enter(char *buf)
 {
-	write(isatty(FD_STD_ERR), msg, ft_strlen(msg));
-	write(isatty(FD_STD_ERR), "\n", 1);
-	exit(-1);
+	return (buf[0] == 10 && buf[1] == 0 && buf[2] == 0 && buf[3] == 0);
+}
+
+int		is_del(char *buf)
+{
+	return (buf[0] == 127);
+}
+
+int		is_delete(char *buf)
+{
+	return (buf[0] == 27 && buf[1] == 91 && buf[2] == 51 && buf[3] == 126);
+}
+
+int		is_esc(char *buf)
+{
+	return (buf[0] == 27 && buf[1] == 0 && buf[2] == 0 && buf[3] == 0);
 }
