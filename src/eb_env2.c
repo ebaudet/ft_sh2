@@ -44,10 +44,44 @@ int		eb_editenv(char **env, char *name, char *value)
 
 char	**eb_newenv(char **env, char *name, char *value)
 {
+	char	**result;
+	int		i;
+	char	*tmp;
 
+	if (eb_editenv(env, name, value) == -1)
+	{
+		result = (char **)malloc(sizeof(char *) * (eb_sizeenv(env) + 2));
+		i = -1;
+		while (env[++i])
+			result[i] = ft_strdup(env[i]);
+		tmp	= ft_strjoin(name, "=");
+		result[i] = ft_strjoin(tmp, value);
+		result[++i] = ft_strdup("");
+		free(tmp);
+		eb_envfree(env);
+		return (result);
+	}
+	return (env);
 }
 
 char	**eb_delenv(char **env, char *name)
 {
+	char	**result;
+	int		i;
+	int		j;
 
+	if (eb_getenv(env, name) == NULL)
+		return (NULL);
+	result = (char **)malloc(sizeof(char *) * eb_sizeenv(env));
+	i = -1;
+	j = 0;
+	while (env[++i])
+	{
+		if (ft_strncmp(*(env + i), name, ft_strlen(name)) != 0)
+		{
+			result[j] = ft_strdup(env[i]);
+			j++;
+		}
+	}
+	return (result);
 }
