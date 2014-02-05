@@ -40,14 +40,14 @@ int		eb_putchar_output(int c)
 	tputs(tgetstr("cl", NULL), 1, eb_putchar);
 }*/
 
-void	*eb_get_data(void)
+/*void	*eb_get_data(void)
 {
 	static t_data		*d = NULL;
 
 	if (d == NULL)
 		d = (t_data *)malloc(sizeof(t_data));
 	return (d);
-}
+}*/
 
 /*void	eb_get_winsize(t_data *d)
 {

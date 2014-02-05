@@ -11,28 +11,31 @@
 # **************************************************************************** #
 
 NAME	= ft_sh2
-FILES	= main.c funct.c print_error.c eb_env.c
+FILES	= main.c funct.c print_error.c eb_data.c eb_env.c eb_env2.c\
+		eb_list.c eb_is_key.c eb_is_key_arrow.c eb_term.c eb_tools.c\
+		eb_signal.c
 SRCS	= $(addprefix src/, $(FILES))
 OBJS	= $(SRCS:src/%.c=.obj/%.o)
 INC		= -I includes -I libft/includes
+LIB_TERMCAT = -L /usr/lib -ltermcap
 FLAGS	= -Wall -Wextra -Werror
 LIB		= -L libft -lft
 
-all: $(NAME)
+all: createfolder $(NAME)
 
 $(NAME): $(OBJS) 
 	make -C libft
-	cc $(FLAGS) $(SRCS) -o $(NAME) $(INC) $(LIB) \
-	-L /usr/X11/lib -lmlx -lXext -lX11
+	cc $(FLAGS) $(OBJS) -o $(NAME) $(INC) $(LIB) $(LIB_TERMCAT)
 
 .obj/%.o: src/%.c
-	mkdir -p .obj
 	cc -c $< -o $@ $(FLAGS) $(INC)
+
+createfolder:
+	mkdir -p .obj
 
 gdb:
 	make -C libft
-	cc -g $(FLAGS) $(SRCS) -o $(NAME) $(INC) $(LIB) \
-	-L /usr/X11/lib -lmlx -lXext -lX11
+	cc -g $(FLAGS) $(SRCS) -o $(NAME) $(INC) $(LIB) $(LIB_TERMCAT)
 	gdb $(NAME)
 
 clean:
@@ -43,4 +46,4 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all gdb clean fclean re
+.PHONY: all gdb clean fclean re createfolder

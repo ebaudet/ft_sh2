@@ -10,6 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdlib.h>
 #include "ft_sh2.h"
 
 int		eb_editenv(char **env, char *name, char *value)

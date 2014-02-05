@@ -141,7 +141,7 @@ void			eb_putstr_term(char *str);
 int				eb_putchar(int c);
 int				eb_putchar_output(int c);
 /*void			eb_clear_screen(t_data *d);*/
-void			*eb_get_data(void);
+/*void			*eb_get_data(void);*/
 /*void			eb_get_winsize(t_data *d);*/
 
 /*
