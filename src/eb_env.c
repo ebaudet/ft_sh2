@@ -66,15 +66,35 @@ char	*eb_getenv(char **env, char *name)
 
 int		eb_sizeenv(char **env)
 {
+	int		i;
 
+	i = 0;
+	while (env[i])
+		i++;
+	return (i);
 }
 
 char	**eb_envcpy(char **env)
 {
+	char	**env_cpy;
+	int		i;
 
+	env_cpy = (char **)malloc(sizeof(char *) * (eb_sizeenv(env) + 1));
+	i = -1;
+	while (env[++i])
+		env_cpy[i] = ft_strdup(env[i]);
+	env_cpy[i] = ft_strdup("");
+	return (env_cpy);
 }
 
 int		eb_envfree(char **env)
 {
-	
+	int		i;
+
+	i = -1;
+	while (env[++i])
+		free(env[i]);
+	free(env[i]);
+	free(env);
+	return (0);
 }
