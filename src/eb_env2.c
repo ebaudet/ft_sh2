@@ -12,10 +12,6 @@
 
 #include "ft_sh2.h"
 
-int		eb_editenv(char **env, char *name, char *value);
-char	**eb_newenv(char **env, char *name, char *value);
-char	**eb_delenv(char **env, char *name);
-
 int		eb_editenv(char **env, char *name, char *value)
 {
 	int		i;
