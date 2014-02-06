@@ -60,12 +60,14 @@ void	eb_sig_action(int s)
 		/*eb_sig_clear();*/
 		if (s == SIGTSTP)
 		{
+			ft_putstr_fd("stop", 2);
 			eb_close();
 			signal(SIGTSTP, SIG_DFL);
 			ioctl(isatty(FD_STD_OUT), TIOCSTI, "\032");
 		}
 		else
 		{
+			ft_putstr_fd("test", 2);
 			eb_close();
 			exit (0);
 		}
@@ -74,10 +76,10 @@ void	eb_sig_action(int s)
 
 void	eb_getsig(void)
 {
-	/*signal(SIGTSTP, &eb_sig_action);
+	signal(SIGTSTP, &eb_sig_action);
 	signal(SIGINT, &eb_sig_action);
 	signal(SIGWINCH, &eb_sig_action);
 	signal(SIGTERM, &eb_sig_action);
 	signal(SIGCONT, &eb_sig_action);
-	signal(SIGQUIT, &eb_sig_action);*/
+	signal(SIGQUIT, &eb_sig_action);
 }

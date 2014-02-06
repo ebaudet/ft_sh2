@@ -40,7 +40,8 @@ void			eb_init(void)
 	term.c_cc[VTIME] = 0;
 	if (tcsetattr(0, TCSANOW, &term) != 0)
 		ft_error("bad tcsetattr");
-	tputs(tgetstr("ti", NULL), 1, eb_putchar);
+	tputs(tgetstr("sc", NULL), 1, eb_putchar);
+	/*tputs(tgetstr("ti", NULL), 1, eb_putchar);*/
 	tputs(tgetstr("vi", NULL), 1, eb_putchar);
 }
 

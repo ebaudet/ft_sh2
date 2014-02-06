@@ -48,6 +48,20 @@ typedef struct		s_list
 	struct s_list	*prev;
 }					t_list;
 
+typedef struct		s_cmd
+{
+	t_list			**cmd;
+	struct s_cmd	*next;
+	struct s_cmd	*prev;
+}					t_cmd;
+
+typedef struct		s_tmp
+{
+	char			exist;
+	t_list			*cursor;
+	t_list			**list;
+}					t_tmp;
+
 typedef struct		s_data
 {
 	char			**av;
@@ -61,6 +75,8 @@ typedef struct		s_data
 	char			error;
 	t_list			*cursor;
 	t_list			**list;
+	t_cmd			**cmd;
+	t_tmp			tmp;
 }					t_data;
 
 /*
@@ -107,9 +123,11 @@ char			**eb_delenv(char **env, char *name);
 /*
 ** eb_list.c
 */
+void			eb_move_cursor(t_data *d);
 void			eb_new_elt(t_data *d, t_list **list, char c);
 void			eb_free_list(t_list **list);
-void			eb_print_list(t_data *d, t_list **list);
+int				eb_del_elt(t_data *d);
+void			eb_print_list(t_data *d, t_list **list, char curs);
 char			*eb_list_to_string(t_list **list);
 
 /*

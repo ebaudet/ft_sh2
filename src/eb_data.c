@@ -18,6 +18,10 @@ void	*eb_get_data(void)
 	static t_data		*d = NULL;
 
 	if (d == NULL)
+	{
 		d = (t_data *)malloc(sizeof(t_data));
+		d->tmp.exist = 0;
+		d->list = NULL;
+	}
 	return (d);
 }

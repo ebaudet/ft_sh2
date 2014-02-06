@@ -53,7 +53,7 @@ char	*eb_getenv(char **env, char *name)
 			i++;
 	}
 	if (loop == 'y')
-		return (NULL);	
+		return (NULL);
 	return (*(env + i) + ft_strlen(name) + 1);
 }
 
