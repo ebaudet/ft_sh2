@@ -22,6 +22,7 @@ void	*eb_get_data(void)
 		d = (t_data *)malloc(sizeof(t_data));
 		d->tmp.exist = 0;
 		d->list = NULL;
+		d->history = NULL;
 	}
 	return (d);
 }

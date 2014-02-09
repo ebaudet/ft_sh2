@@ -25,7 +25,6 @@ int		eb_editenv(char **env, char *name, char *value)
 	{
 		if (ft_strncmp(*(env + i), name, ft_strlen(name)) == 0)
 		{
-			/*free(env[i]);*/
 			tmp = ft_strjoin(name, "=");
 			env[i] = ft_strjoin(tmp, value);
 			free(tmp);

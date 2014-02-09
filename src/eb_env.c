@@ -20,7 +20,7 @@ char	**eb_get_path(char **env)
 	int		i;
 	int		j;
 
-	if((tmp = ft_strsplit(eb_getenv(env, "PATH"), ':')) == NULL)
+	if ((tmp = ft_strsplit(eb_getenv(env, "PATH"), ':')) == NULL)
 		return (NULL);
 	i = ft_count_c(eb_getenv(env, "PATH"), ':') + 1;
 	if ((path = (char **)malloc(i * sizeof(char *))) == NULL)

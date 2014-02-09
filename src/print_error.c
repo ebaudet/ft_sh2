@@ -20,12 +20,16 @@ void	p_err(char *s1, char *s2, int error)
 	ft_putstr(s2);
 	ft_putstr("\n");
 	if (error != NO_ERR)
+	{
+		eb_close();
 		exit(error);
+	}
 }
 
 void	ft_error(char *msg)
 {
 	write(isatty(FD_STD_ERR), msg, ft_strlen(msg));
 	write(isatty(FD_STD_ERR), "\n", 1);
+	eb_close();
 	exit(-1);
 }

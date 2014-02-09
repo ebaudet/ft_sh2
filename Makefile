@@ -13,7 +13,7 @@
 NAME	= ft_sh2
 FILES	= main.c funct.c print_error.c eb_data.c eb_env.c eb_env2.c\
 		eb_list.c eb_is_key.c eb_is_key_arrow.c eb_term.c eb_tools.c\
-		eb_signal.c
+		eb_signal.c eb_cmd.c eb_cursor.c eb_key_action.c eb_list2.c
 SRCS	= $(addprefix src/, $(FILES))
 OBJS	= $(SRCS:src/%.c=.obj/%.o)
 INC		= -I includes -I libft/includes

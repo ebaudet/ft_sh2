@@ -41,7 +41,6 @@ void			eb_init(void)
 	if (tcsetattr(0, TCSANOW, &term) != 0)
 		ft_error("bad tcsetattr");
 	tputs(tgetstr("sc", NULL), 1, eb_putchar);
-	/*tputs(tgetstr("ti", NULL), 1, eb_putchar);*/
 	tputs(tgetstr("vi", NULL), 1, eb_putchar);
 }
 
@@ -51,7 +50,6 @@ void			eb_close(void)
 
 	old = eb_get_init_conf();
 	tcsetattr(0, TCSANOW, old);
-	/*tputs(tgetstr("cl", NULL), 1, eb_putchar);*/
 	tputs(tgetstr("ve", NULL), 1, eb_putchar);
 	tputs(tgetstr("te", NULL), 1, eb_putchar);
 }

@@ -31,7 +31,6 @@
 #  define PATH_MAX 512
 # endif
 
-
 # define FD_STD_OUT 1
 # define FD_STD_ERR 2
 
@@ -76,6 +75,7 @@ typedef struct		s_data
 	t_list			*cursor;
 	t_list			**list;
 	t_cmd			**cmd;
+	t_cmd			*history;
 	t_tmp			tmp;
 }					t_data;
 
@@ -123,10 +123,15 @@ char			**eb_delenv(char **env, char *name);
 /*
 ** eb_list.c
 */
-void			eb_move_cursor(t_data *d);
 void			eb_new_elt(t_data *d, t_list **list, char c);
 void			eb_free_list(t_list **list);
 int				eb_del_elt(t_data *d);
+
+/*
+** eb_list2.c
+*/
+void			eb_cursor(char c, char border);
+void			eb_position_cursor(void);
 void			eb_print_list(t_data *d, t_list **list, char curs);
 char			*eb_list_to_string(t_list **list);
 
@@ -145,6 +150,27 @@ int				is_esc(char *buf);
 int				is_arrow(char *buf);
 
 /*
+** eb_key_action.c
+*/
+int				eb_press_enter(t_data *d);
+void			eb_arrow_up(t_data *d);
+void			eb_arrow_down(t_data *d);
+
+/*
+** eb_cursor.c
+*/
+void			eb_move_cursor(t_data *d);
+
+/*
+** eb_cmd.c
+*/
+void			eb_add_in_history(t_data *d);
+void			eb_free_cmd(t_data *d);
+void			eb_history(t_data *d);
+t_list			**eb_string_to_list(char *str);
+void			eb_add_string_to_cmd(t_data *d, char *str);
+
+/*
 ** eb_term.c
 */
 struct termios	*eb_get_init_conf(void);
@@ -158,16 +184,10 @@ void			eb_putstr_term(char *str);
 */
 int				eb_putchar(int c);
 int				eb_putchar_output(int c);
-/*void			eb_clear_screen(t_data *d);*/
-/*void			*eb_get_data(void);*/
-/*void			eb_get_winsize(t_data *d);*/
 
 /*
 ** eb_signal.c
 */
-/*void			eb_sig_resize(void);*/
-/*void			eb_sig_clear(void);*/
-/*void			eb_sig_fg(void);*/
 void			eb_sig_action(int s);
 void			eb_getsig(void);
 

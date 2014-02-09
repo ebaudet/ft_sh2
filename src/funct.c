@@ -86,15 +86,8 @@ void	ft_exec_cmd_cd(t_data *data)
 	}
 }
 
-int		ft_exec_cmd(t_data *data)
+int		ft_exec_cmd2(t_data *data)
 {
-	int		ret;
-
-	if (ft_strcmp(data->name_cmd, "exit") == 0)
-	{
-		eb_envfree(data->env);
-		exit(0);
-	}
 	if (ft_strcmp(data->name_cmd, "cd") == 0)
 		ft_exec_cmd_cd(data);
 	else if (ft_strcmp(data->name_cmd, "setenv") == 0)
@@ -117,6 +110,21 @@ int		ft_exec_cmd(t_data *data)
 	}
 	else
 		data->pid = fork();
+	return (1);
+}
+
+int		ft_exec_cmd(t_data *data)
+{
+	int		ret;
+
+	if (ft_strcmp(data->name_cmd, "exit") == 0)
+	{
+		eb_close();
+		eb_envfree(data->env);
+		exit(0);
+	}
+	if (ft_exec_cmd2(data) == 0)
+		return (0);
 	if (data->pid == -1)
 	{
 		ft_putstr("fork : problem.");

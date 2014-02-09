@@ -23,7 +23,6 @@ static char		*biggerbuf(int const fd, char *buf, int *ret)
 	tmp[*ret] = '\0';
 	tmp2 = buf;
 	buf = ft_strjoin(buf, tmp);
-	ft_strdel(&tmp2);
 	return (buf);
 }
 
