@@ -45,13 +45,11 @@ static char		**create_string(char **strnew, char const *s, char c)
 char			**ft_strsplit(char const *s, char c)
 {
 	int			i;
-	int			found;
 	int			nbstr;
 	char		**strnew;
 
 	i = 0;
 	nbstr = 0;
-	found = 0;
 	if (!s)
 		return (NULL);
 	if (s[0] != c && s[0])
@@ -62,7 +60,6 @@ char			**ft_strsplit(char const *s, char c)
 		{
 			if ((s[i + 1] != c) && s[i + 1])
 				nbstr++;
-			found = 1;
 		}
 		i++;
 	}
