@@ -70,13 +70,12 @@ void	eb_main(t_data *d, char **env)
 int		main(int ac, char **av, char **env)
 {
 	t_data			*d;
-	struct termios	*old;
 
 	(void)ac;
 	(void)av;
 	eb_getsig();
 	d = eb_get_data();
-	old = eb_get_init_conf();
+	eb_get_init_conf();
 	eb_main(d, env);
 	while (ft_strcmp(d->prompt, "exit") != 0)
 	{

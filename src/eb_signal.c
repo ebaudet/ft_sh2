@@ -20,9 +20,6 @@
 
 void	eb_sig_action(int s)
 {
-	t_data		*d;
-
-	d = eb_get_data();
 	if (s == SIGTSTP)
 	{
 		ft_putstr_fd("stop", 2);
