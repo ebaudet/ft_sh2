@@ -17,11 +17,9 @@
 static char		*biggerbuf(int const fd, char *buf, int *ret)
 {
 	char	tmp[BUFF_SIZE + 1];
-	char	*tmp2;
 
 	*ret = read(fd, tmp, BUFF_SIZE);
 	tmp[*ret] = '\0';
-	tmp2 = buf;
 	buf = ft_strjoin(buf, tmp);
 	return (buf);
 }
